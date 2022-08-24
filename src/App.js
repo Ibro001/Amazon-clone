@@ -1,6 +1,7 @@
 import React from "react";
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import styled from "styled-components";
+import Login from "./Components/Login";
 
 function App() {
   return (
@@ -8,7 +9,7 @@ function App() {
       <Container>
         <Routes>
           <Route path="/" element={<h1>Home Page</h1>} />
-          <Route path="/login" element={<h1>Login Page</h1>} />
+          <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<h1>SignUp Page</h1>} />
         </Routes>
       </Container>
@@ -17,6 +18,8 @@ function App() {
   );
 }
 
-const Container = styled.div``
+const Container = styled.div`
+  width: 100vw;
+`
 
 export default App;
