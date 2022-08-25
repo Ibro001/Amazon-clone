@@ -5,7 +5,7 @@ function SignUp() {
   return (
     <Container>
         <Logo>
-            <img src="./amazon_logo.png" alt="" />
+            <img src="./amazon_logo.png" alt="amazon_logo" />
         </Logo>
         <FormContainer >
             <h3>Sign-Up</h3>
