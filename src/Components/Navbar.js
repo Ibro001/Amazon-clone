@@ -1,8 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useStateValue } from '../Context/StateProvider';
+import { useNavigate } from 'react-router-dom';
 
 
 function Navbar() {
+
+    const [{basket}] = useStateValue();
+    console.log('basket>>>', basket);
+
+    const navigate = useNavigate();
+
   return (
     <Container>
       <Inner>
@@ -25,9 +33,9 @@ function Navbar() {
                 <span><p>& Orders</p></span>
             </NavButton>
 
-            <BasketButton>
+            <BasketButton onClick={()=> navigate('/checkout')}>
                 <img src="./basket-icon.png" alt="basket_icon" />
-                <p>0</p>
+                <p>{basket?.length}</p>
             </BasketButton>
 
         </RightContainer>

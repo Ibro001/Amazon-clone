@@ -12,14 +12,36 @@ function Home() {
         <img src="mobile_banner.jpg" alt="mobile_banner_background" />
       </Banner>
       <Main>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        <Card 
+          image={"https://m.media-amazon.com/images/I/71rXSVqET9L._AC_UL320_.jpg"}
+          price={103}
+          rating={0}
+          title={'Sceptre 24" Professional Thin 75Hz 1080p LED Monitor 2x HDMI VGA Build-in Speakers, Machine Black (E248W-19203R Series)'}
+        />
+        <Card 
+          image={"https://m.media-amazon.com/images/I/71wrIZujPIL._AC_UL320_.jpg"}
+          price={46}
+          rating={4.5}
+          title={'Roku Streaming Stick 4K 2021 | Streaming Device 4K/HDR/Dolby Vision with Roku Voice Remote and TV Controls'}
+        />
+        <Card 
+          image={"https://m.media-amazon.com/images/I/61efchsOzWL._AC_UL320_.jpg"}
+          price={130}
+          rating={4.5}
+          title={'LED Reading Light Charger Cord, USB Charging Cable Compatible with Vekkia/ TAKKUI/ LEDGLE LED Neck Reading Light...'}
+        />
+        <Card 
+          image={"https://m.media-amazon.com/images/I/6182S7MYC2L._AC_UY218_.jpg"}
+          price={22}
+          rating={5}
+          title={'Echo Dot (3rd Gen, 2018 release) - Smart speaker with Alexa - Charcoal'}
+        />
+        <Card 
+          image={"https://m.media-amazon.com/images/I/51goF8lukrL._AC_UY218_.jpg"}
+          price={348}
+          rating={4.5}
+          title={'HONYAT Wireless Switch Pro Controller for Nintendo Switch/Lite/OLED...'}
+        />
       </Main>
     </Container>
   )

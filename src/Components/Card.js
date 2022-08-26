@@ -1,22 +1,43 @@
 import React from 'react'
 import styled from 'styled-components'
 import Rating from '@mui/material/Rating';
+import {useStateValue} from '../Context/StateProvider';
 
-function Card() {
+
+function Card({title,price,rating,image}) {
+
+  const [{ basket }, dispatch] = useStateValue();
+
+  console.log('basket>>>>>', basket)
+
+  const addToBasket = (e) => {
+    e.preventDefault();
+
+    dispatch ({
+      type: 'ADD_TO_BASKET',
+      item: {
+        title,
+        price,
+        rating,
+        image,
+      },
+    });
+  };
+
   return (
     <Container>
       <Image>
-        <img src="https://m.media-amazon.com/images/I/71rXSVqET9L._AC_UL320_.jpg" alt="img" />
+        <img src={image} alt="img" />
       </Image>
       <Description>
-        <h5>Sceptre 24" Professional Thin 75Hz 1080p LED Monitor 2x HDMI VGA Build-in Speakers, Machine Black (E248W-19203R Series)</h5>
+        <h5>{title}</h5>
         <Rating 
             name="half-rating" 
-            defaultValue={2.5} 
+            defaultValue={rating} 
             precision={0.5}  
         />
-        <p><sup>$</sup>103<sup>35</sup></p>
-        <button>Add to Cart</button>
+        <p><sup>$</sup>{price}<sup>99</sup></p>
+        <button onClick={addToBasket}>Add to Cart</button>
       </Description>
     </Container>
   )
