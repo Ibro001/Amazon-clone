@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 function Navbar() {
 
     const [{basket}] = useStateValue();
-    console.log('basket>>>', basket);
+    
 
     const navigate = useNavigate();
 
@@ -33,7 +33,7 @@ function Navbar() {
                 <span><p>& Orders</p></span>
             </NavButton>
 
-            <BasketButton onClick={()=> navigate('/checkout')}>
+            <BasketButton onClick={() => navigate('/checkout')}>
                 <img src="./basket-icon.png" alt="basket_icon" />
                 <p>{basket?.length}</p>
             </BasketButton>
