@@ -4,18 +4,17 @@ import Rating from '@mui/material/Rating';
 import {useStateValue} from '../Context/StateProvider';
 
 
-function Card({title,price,rating,image}) {
+function Card({id,title,price,rating,image}) {
 
   const [{ basket }, dispatch] = useStateValue();
-
-  console.log('basket>>>>>', basket)
 
   const addToBasket = (e) => {
     e.preventDefault();
 
-    dispatch ({
+    dispatch({
       type: 'ADD_TO_BASKET',
       item: {
+        id,
         title,
         price,
         rating,
@@ -37,10 +36,11 @@ function Card({title,price,rating,image}) {
             precision={0.5}  
         />
         <p><sup>$</sup>{price}<sup>99</sup></p>
+
         <button onClick={addToBasket}>Add to Cart</button>
       </Description>
     </Container>
-  )
+  );
 }
 
 const Container = styled.div`
