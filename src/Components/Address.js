@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components'
 import { useStateValue } from '../Context/StateProvider';
 import Navbar from './Navbar';
 
 function Address() {
+
+    const navigate = useNavigate();
 
     const [{}, dispatch] = useStateValue();
 
@@ -28,8 +31,9 @@ function Address() {
                 city,
                 state,
             }
-        })
-    }
+        });
+        navigate('/payment')
+    };
 
   return (
     <Container>
