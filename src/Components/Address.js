@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import { useStateValue } from '../Context/StateProvider';
 import Navbar from './Navbar';
 
 function Address() {
+
+    const [{}, dispatch] = useStateValue();
 
     const [fullName, setFullName] = useState('');
     const [phone, setPhone] = useState('');
@@ -11,6 +14,22 @@ function Address() {
     const [landmark, setLandmark] = useState('');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
+
+    const deliveryAddress = (e) => {
+        e.preventDefault();
+
+        dispatch({
+            type: 'SET_ADDRESS',
+            item: {
+                fullName,
+                phone,
+                flat,
+                area,
+                city,
+                state,
+            }
+        })
+    }
 
   return (
     <Container>
@@ -77,7 +96,7 @@ function Address() {
                     />
             </InputContainer>
 
-            <button>Deliver to this Address</button>
+            <button onClick={deliveryAddress}>Deliver to this Address</button>
         </FormContainer>
       </Main>
 
