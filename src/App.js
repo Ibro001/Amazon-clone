@@ -9,6 +9,7 @@ import Address from "./Components/Address";
 import Payment from "./Components/Payment";
 import {Elements} from '@stripe/react-stripe-js'
 import {loadStripe} from '@stripe/stripe-js'
+import AddProduct from "./Components/AddProduct";
 
 const promise = loadStripe(
   'pk_test_51LcVfmC6XiTjG1nLey4eZZ2aK3yjYUBqXwNtMKYpaepsojcZCw9tQi3CRgMMfA9WiiYbHcTfHW1GMoI4o1ufZsq1000PWxZCW1'
@@ -32,6 +33,7 @@ function App() {
               </Elements>
             } 
           />
+          <Route path="/addproduct" element={<AddProduct />} />
         </Routes>
       </Container>
     </Router>
