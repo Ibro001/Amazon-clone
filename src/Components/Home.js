@@ -23,7 +23,7 @@ function Home() {
         <img src="./banner.jpg" alt="background_banner" />
         <img src="mobile_banner.jpg" alt="mobile_banner_background" />
       </Banner>
-      <Main> {/*Did some Refactoring here, Retrieving prroducts from the db*/}
+      <Main> {/*Did some Refactoring here, Retrieving products from the db*/}
         {
           products && products?.data.map((product) => (
 
