@@ -32,7 +32,7 @@ function Checkout() {
 
           {
             basket?.map((product) => (
-              <Product>
+            <Product>
 
               <Image>
                 <img src={product.image} alt='echoe_img' />
@@ -167,8 +167,8 @@ const Product = styled.div`
 `;
 
 const Image = styled.div`
+flex: 0.3;
   img{
-    margin-top: 10px;
     width: 100%;
   }
 `;
