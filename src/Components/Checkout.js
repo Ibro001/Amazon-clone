@@ -90,7 +90,6 @@ const Container = styled.div`
   height: fit-content;
   margin: auto;
   background-color: rgb(234, 237, 237);
-  border: 1px solid red;
   position: relative;
 `;
 
@@ -169,6 +168,7 @@ const Product = styled.div`
 const Image = styled.div`
 flex: 0.3;
   img{
+    margin-top: 10px;
     width: 100%;
   }
 `;
