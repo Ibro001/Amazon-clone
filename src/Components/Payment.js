@@ -1,18 +1,55 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import CurrencyFormat from 'react-currency-format';
 import styled from 'styled-components'
 import { useStateValue } from '../Context/StateProvider'
 import Navbar from './Navbar'
 import {getBasketTotal} from './reducer'
 import {CardElement, useElements, useStripe} from '@stripe/react-stripe-js'
+import axios from '../axios';
+import { useNavigate } from 'react-router-dom';
 
 
 function Payment() {
 
-    const [{ address, basket}] = useStateValue(); //context 
+    const [{ address, basket}, dispatch] = useStateValue(); //context 
 
+    const navigate = useNavigate();
+
+    // Stripe settup //
     const element = useElements();
     const stripe = useStripe();
+
+    const [clientSecret, setclientSecret] = useState('');
+
+    useEffect(() => {
+      const fetchClientSecret = async() => {
+        const data = await axios.post('/payment/create', {
+          amount: getBasketTotal(basket),
+        });
+        setclientSecret(data.data.clientSecret);
+      };
+
+      fetchClientSecret();
+      console.log('clientSecret is>>>>>>>', clientSecret);
+    },[]);
+
+    const confirmPayment = async (e) => {
+      e.preventDefault();
+
+      await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: element.getElement(CardElement)
+        }
+      }).then((result) => {
+        alert('Payment Successful');
+        dispatch({
+          type: 'EMPTY_BASKET'
+        })
+        navigate('/');
+      }).catch(error => console.warn(error.message));
+    };
+
+
 
   return (
     <Container>
@@ -93,7 +130,7 @@ function Payment() {
             prefix={'$'}
           />
 
-          <button>Place Order</button>
+          <button onClick={confirmPayment}>Place Order</button>
 
         </Subtotal>
         
