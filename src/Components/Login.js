@@ -1,8 +1,45 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components'
+import { useStateValue } from '../Context/StateProvider';
+import axios from '../axios';
+
 
 function Login() {
+
+
+    const navigate = useNavigate();
+
+    //State
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    //Context//
+    const [{}, dispatch] = useStateValue
+
+    const login = (e) => {
+        e.preventDefault();
+
+        axios.post('auth/login', {email, password})
+        .then((res) => {
+            if (!res.data.error) {
+                dispatch({
+                    type: 'SET_USER',
+                    user: res.data,
+                });
+
+                localStorage.setItem('user', JSON.stringify(res.data));
+
+                navigate('/');  
+            } else if (res.data.error){
+                alert(res.data.error);
+            }
+        }).catch((err) => console.warn(err));
+    };
+
+
   return (
+
     <Container>
         <Logo>
             <img src="./amazon_logo.png" alt="amazon_logo" />
@@ -18,7 +55,7 @@ function Login() {
                 <p>Password</p>
                 <input type='password' placeholder='********' />
             </InputContainer>
-            <LoginButton>Login</LoginButton>
+            <LoginButton onClick={login}>Login</LoginButton>
             <InfoText>
                 By continuing, you agree to Amazon's 
                 <span> Conditions of Use</span> and <span>Privacy Notice</span>. 
