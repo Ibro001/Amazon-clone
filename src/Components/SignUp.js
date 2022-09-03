@@ -1,31 +1,70 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import axios from '../axios';
+
+
 
 function SignUp() {
+
+
+    const navigate = useNavigate();
+
+    const [fullName, setFullName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const signup = (e) => {
+        e.preventDefault();
+
+        axios.post('/auth/signup', {email, password, fullName})
+        .then((res) => alert(res.data.message))
+        .catch((err) => console.warn(err));
+
+        navigate('/login');
+    };
+
+
+
   return (
     <Container>
-        <Logo>
+        <Logo onClick={() => navigate('/')}>
             <img src="./amazon_logo.png" alt="amazon_logo" />
         </Logo>
         <FormContainer >
             <h3>Sign-Up</h3>
             
             <InputContainer>
-                <p>Full Name</p>
-                <input type='text' placeholder='John Smith' />
+                <p>FullName</p>
+                <input 
+                    type='text' 
+                    placeholder='John Smith'
+                    onChange={(e) => setFullName(e.target.value)} 
+                    value={fullName}
+                />
             </InputContainer>
             <InputContainer>
                 <p>Email</p>
-                <input type='email' placeholder='example@gmail.com' />
+                <input 
+                    type='email' 
+                    placeholder='example@gmail.com' 
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
+                />
             </InputContainer>
             <InputContainer>
                 <p>Password</p>
-                <input type='password' placeholder='********' />
+                <input 
+                type='password' 
+                placeholder='********'
+                onChange={(e) => setPassword(e.target.value)} 
+                value={password}
+                />
             </InputContainer>
-            <SignUpButton>Create Account in Amazon</SignUpButton>
+            <SignUpButton onClick={signup}>Create Account in Amazon</SignUpButton>
             
         </FormContainer>
-        <LoginButton>Back to Login</LoginButton>
+        <LoginButton onClick={() => navigate('/login')}>Back to Login</LoginButton>
     </Container>
   )
 }
