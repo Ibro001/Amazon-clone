@@ -28,7 +28,7 @@ function Navbar() {
                 <p>Hello,</p>
                 <span><p>Guest</p></span>
             </NavButton>
-            <NavButton>
+            <NavButton onClick={() => navigate('/order')}>
                 <p>Return</p>
                 <span><p>& Orders</p></span>
             </NavButton>
