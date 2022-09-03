@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Payment() {
 
-    const [{ address, basket}, dispatch] = useStateValue(); //context 
+    const [{ address, basket, user}, dispatch] = useStateValue(); //context 
 
     const navigate = useNavigate();
 
@@ -41,7 +41,14 @@ function Payment() {
           card: element.getElement(CardElement)
         }
       }).then((result) => {
-        alert('Payment Successful');
+        
+        axios.post('/orders/add', {
+          basket: basket,
+          price: getBasketTotal(basket),
+          email: user?.email,
+          address: address,
+        })
+
         dispatch({
           type: 'EMPTY_BASKET'
         })
@@ -90,7 +97,7 @@ function Payment() {
 
                     <div>
                     {basket?.map((product) => (
-                        <Product>
+                      <Product>
                         <Image>
                             <img src={product.image} alt="img" />
                         </Image>
@@ -99,7 +106,7 @@ function Payment() {
 
                             <p>${product.price}</p>
                         </Description>
-                        </Product>
+                      </Product>
                     ))}
                     </div>
                 </OrderContainer>
@@ -236,6 +243,7 @@ const Product = styled.div`
 `;
 
 const Image = styled.div`
+flex: 0.2;
   img{
     margin-top: 10px;
     width: 100%;
