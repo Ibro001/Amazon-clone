@@ -6,15 +6,23 @@ import { useNavigate } from 'react-router-dom';
 
 function Navbar() {
 
-    const [{basket}] = useStateValue();
-    
+    const [{basket, user}, dispatch] = useStateValue();
 
     const navigate = useNavigate();
+
+    const signOut = () => {
+        dispatch ({
+            type: 'SET_USER',
+            user: null,
+        });
+        localStorage.removeItem('user');
+        navigate('/');
+    }
 
   return (
     <Container>
       <Inner>
-        <Logo>
+        <Logo onClick={() => navigate('/')}>
         <img src="./amazon_logo1.png" alt="amazon_logo" />
         </Logo>
         <SearchBar>
@@ -24,9 +32,11 @@ function Navbar() {
             </SearchIcon>
         </SearchBar>
         <RightContainer>
-            <NavButton>
+            <NavButton
+                onClick={user? () => signOut() : () => navigate('/')}
+            >
                 <p>Hello,</p>
-                <span><p>Guest</p></span>
+                <span><p>{user? user?.fullName : 'Guest'}</p></span>
             </NavButton>
             <NavButton onClick={() => navigate('/order')}>
                 <p>Return</p>
