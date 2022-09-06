@@ -15,7 +15,7 @@ function Login() {
     const [password, setPassword] = useState('');
 
     //Context//
-    const [{}, dispatch] = useStateValue
+    const [{}, dispatch] = useStateValue();
 
     const login = (e) => {
         e.preventDefault();
@@ -41,7 +41,7 @@ function Login() {
   return (
 
     <Container>
-        <Logo>
+        <Logo onClick={() => navigate('/')}>
             <img src="./amazon_logo.png" alt="amazon_logo" />
         </Logo>
         <FormContainer >
@@ -49,11 +49,21 @@ function Login() {
             
             <InputContainer>
                 <p>Email</p>
-                <input type='email' placeholder='example@gmail.com' />
+                <input 
+                    type='email' 
+                    placeholder='example@gmail.com'
+                    onChange={(e) => setEmail(e.target.value)} 
+                    value={email}
+                />
             </InputContainer>
             <InputContainer>
                 <p>Password</p>
-                <input type='password' placeholder='********' />
+                <input 
+                    type='password' 
+                    placeholder='********' 
+                    onChange={(e) => setPassword(e.target.value)}
+                    value={password}
+                />
             </InputContainer>
             <LoginButton onClick={login}>Login</LoginButton>
             <InfoText>
