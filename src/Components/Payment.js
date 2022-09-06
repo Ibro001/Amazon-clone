@@ -16,7 +16,7 @@ function Payment() {
     const navigate = useNavigate();
 
     // Stripe settup //
-    const element = useElements();
+    const elements = useElements();
     const stripe = useStripe();
 
     const [clientSecret, setclientSecret] = useState('');
@@ -38,7 +38,7 @@ function Payment() {
 
       await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
-          card: element.getElement(CardElement)
+          card: elements.getElement(CardElement)
         }
       }).then((result) => {
         
