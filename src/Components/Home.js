@@ -11,7 +11,7 @@ function Home() {
   useEffect (() => {
     const fetchData = async() => {
       const data = await axios.get('/products/get');
-      setProducts(data) //Store our data from the db in the state//
+      setProducts(data); //Store our data from the db in the state//
     };
     fetchData(); 
   },[])
@@ -26,7 +26,6 @@ function Home() {
       <Main> {/*Did some Refactoring here, Retrieving products from the db*/}
         {
           products && products?.data.map((product) => (
-
           <Card
             id={product._id} 
             image={product.imageURL}
