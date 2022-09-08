@@ -33,7 +33,7 @@ function Navbar() {
         </SearchBar>
         <RightContainer>
             <NavButton
-                onClick={user? () => signOut() : () => navigate('/')}
+                onClick={user? () => signOut() : () => navigate('/login')}
             >
                 <p>Hello,</p>
                 <span><p>{user? user?.fullName : 'Guest'}</p></span>
